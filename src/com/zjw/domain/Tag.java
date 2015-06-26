@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 标签实体类
@@ -21,8 +23,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_tag")
 public class Tag {
 
+	@Expose
 	private Integer id;
+	@Expose
 	private String name; // 标签名称
+	@Expose
 	private String url; // 标签地址
 
 	@Id

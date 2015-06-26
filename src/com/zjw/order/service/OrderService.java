@@ -1,6 +1,7 @@
 package com.zjw.order.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zjw.common.util.PageBean;
 import com.zjw.domain.Order;
@@ -50,5 +51,41 @@ public interface OrderService {
 	 *
 	 */
 	public void updateOrderStatus(int status,String orderNo);
+	
+	/***
+	 * 
+	 * Description: TODO
+	 *         
+	 * @create time 2015-6-25 下午03:31:59
+	 *
+	 * @param s_order
+	 * @param pageBean
+	 * @return       
+	 *
+	 */
+	public Map<String, Object> list(Order s_order, PageBean pageBean);
+	
+	/***
+	 * 
+	 * Description: 加载订单详细信息
+	 *         
+	 * @create time 2015-6-25 下午05:09:28
+	 *
+	 * @param orderManage
+	 * @return       
+	 *
+	 */
+	public Order getOrderById(int id);
+	
+	/**
+	 * 
+	 * Description: 修改订单状态
+	 *         
+	 * @create time 2015-6-25 下午06:32:35
+	 *
+	 * @param orderManage       
+	 *
+	 */
+	public void changeStatus(Order orderManage);
 	
 }

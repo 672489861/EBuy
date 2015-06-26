@@ -163,4 +163,26 @@ public interface BaseDAO<T> {
 	 */
 	public void executeHql(String hql, List<Object> params);
 
+	/***
+	 * 
+	 * Description: 删除对象
+	 *         
+	 * @create time 2015-6-20 下午11:26:02
+	 *
+	 * @param o       
+	 *
+	 */
+	public void delete(T o);
+	
+	/***
+	 * 
+	 * Description: 执行sql
+	 *         
+	 * @create time 2015-6-23 下午04:24:02
+	 *
+	 * @param sql       
+	 *
+	 */
+	public void executeSQL(String sql);
+
 }

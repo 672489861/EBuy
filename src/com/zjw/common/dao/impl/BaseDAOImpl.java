@@ -152,4 +152,14 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
+	public void delete(T o) {
+		getCurrentSession().delete(o);
+	}
+
+	@Override
+	public void executeSQL(String sql) {
+		getCurrentSession().createSQLQuery(sql).executeUpdate();
+	}
+
 }

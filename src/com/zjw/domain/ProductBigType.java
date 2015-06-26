@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 商品大类实体
@@ -27,9 +29,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_bigtype")
 public class ProductBigType {
 
+	@Expose
 	private Integer id;
+	@Expose
 	private String name; // 大类名称
 	private List<Product> products = new ArrayList<Product>();
+	@Expose
 	private String remark; // 备注
 	private List<ProductSmallType> smallTypes = new ArrayList<ProductSmallType>();
 

@@ -1,6 +1,7 @@
 package com.zjw.notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zjw.domain.Notice;
 import com.zjw.common.util.PageBean;
@@ -40,5 +41,41 @@ public interface NoticeService {
 	 * 
 	 */
 	public Notice getNoticeById(int noticeId);
+
+	/***
+	 * 
+	 * Description: 公告管理查询
+	 * 
+	 * @create time 2015-6-25 上午10:22:30
+	 * 
+	 * @param s_notice
+	 * @param pageBean
+	 * @return
+	 * 
+	 */
+	public Map<String, Object> getNoticeManageList(Notice s_notice,
+			PageBean pageBean);
+
+	/***
+	 * 
+	 * Description: 删除公告
+	 * 
+	 * @create time 2015-6-25 上午10:26:23
+	 * 
+	 * @param noticeManage
+	 * 
+	 */
+	public void delete(Notice noticeManage);
+
+	/***
+	 * 
+	 * Description: 新增或修改公告
+	 * 
+	 * @create time 2015-6-25 上午10:26:53
+	 * 
+	 * @param noticeManage
+	 * 
+	 */
+	public void saveNotice(Notice noticeManage);
 
 }

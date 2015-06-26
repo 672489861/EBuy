@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 订单实体类
@@ -30,13 +32,19 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_order")
 public class Order {
 
+	@Expose
 	private float cost; // 订单金额
+	@Expose
 	private Date createTime; // 创建时间
+	@Expose
 	private Integer id;
+	@Expose
 	private String orderNo; // 订单号
+	@Expose
 	private List<OrderProduct> orderProductList = new ArrayList<OrderProduct>();
 	private int status; // 状态   1 待审核 2 审核通过 3卖家已发货 4已收货 (交易完成 ）
-	private User user; // 订单对应实体
+	@Expose
+	private User user; // 订单对应用户
 
 	@Column(nullable = false)
 	public float getCost() {

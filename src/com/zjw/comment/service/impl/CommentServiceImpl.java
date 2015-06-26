@@ -1,12 +1,15 @@
 package com.zjw.comment.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.zjw.comment.service.CommentService;
 import com.zjw.common.dao.BaseDAO;
@@ -53,6 +56,38 @@ public class CommentServiceImpl implements CommentService {
 	@Transactional(rollbackFor = Exception.class)
 	public void saveComment(Comment comment) {
 		baseDAO.merge(comment);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<String, Object> getCommentManageMap(Comment s_comment,
+			PageBean pageBean) {
+		StringBuffer hql = new StringBuffer("from Comment ");
+		StringBuffer countHql = new StringBuffer(
+				"select count(1) from Comment ");
+		List<Object> params = new ArrayList<Object>();
+		if (s_comment != null) {
+			if (StringUtils.hasText(s_comment.getContent())) {
+				hql.append(" and content like ?");
+				countHql.append(" and content like ?");
+				params.add("%" + s_comment.getContent() + "%");
+			}
+		}
+		List<Comment> tags = baseDAO.find(
+				hql.toString().replaceFirst("and", "where"), params, pageBean);
+		long total = baseDAO.count(
+				countHql.toString().replaceFirst("and", "where"), params);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("total", total);
+		resultMap.put("rows", tags);
+		return resultMap;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(Comment commentManage) {
+		commentManage = baseDAO.get(Comment.class, commentManage.getId());
+		baseDAO.delete(commentManage);
 	}
 
 }

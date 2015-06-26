@@ -1,4 +1,7 @@
-#Wed Jun 17 21:10:29 GMT+08:00 2015
+#Sun Jun 21 01:13:42 GMT+08:00 2015
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/admin/userUpdate.jsp=UTF-8
+encoding//WebContent/js/common/admin_main.js=UTF-8
+encoding//WebContent/js/jquery-1.11.1.js=UTF-8
 encoding//src/com/zjw/common/exception/MyException.java=UTF-8
 encoding//src/com/zjw/common/util/DateTimeUtil.java=UTF-8

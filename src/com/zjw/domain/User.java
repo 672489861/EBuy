@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 用户实体类
@@ -28,18 +30,29 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "t_user")
 public class User {
-
+	
+	@Expose
 	private String address; // 收货地址
+	@Expose
 	private Date birthday; // 出生日期
+	@Expose
 	private String dentityCode; // 身份证
+	@Expose
 	private String email; // 邮箱
+	@Expose
 	private Integer id;
+	@Expose
 	private String mobile; // 手机
 	private List<Order> orderList = new ArrayList<Order>();
+	@Expose
 	private String password; // 密码
+	@Expose
 	private String sex; // 性别
+	@Expose
 	private int status = 1; // 普通用户1 管理员2
+	@Expose
 	private String trueName; // 真实姓名
+	@Expose
 	private String userName; // 用户名
 
 	@Column(length = 200)

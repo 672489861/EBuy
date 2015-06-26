@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 公告实体类
@@ -25,10 +27,14 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "t_notice")
 public class Notice {
-
+	
+	@Expose
 	private String content; // 公告内容
+	@Expose
 	private Date createTime; // 公告创建时间
+	@Expose
 	private Integer id;
+	@Expose
 	private String title; // 公告标题
 
 	@Lob

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 商品小类实体
@@ -28,13 +30,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_smalltype")
 public class ProductSmallType {
 
+	@Expose
 	private ProductBigType bigType;
+	@Expose
 	private Integer id;
+	@Expose
 	private String name; // 小类名称
 	private List<Product> products = new ArrayList<Product>();
+	@Expose
 	private String remarks; // 备注
 
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne(cascade = { CascadeType.ALL})
 	@JoinColumn(name = "bigTypeId")
 	public ProductBigType getBigType() {
 		return bigType;

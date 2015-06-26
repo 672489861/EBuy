@@ -54,4 +54,49 @@ public interface ProductService {
 	 */
 	public Product getProductById(int productId);
 
+	/***
+	 * 
+	 * Description: 判断指定小类下是否有商品
+	 * 
+	 * @create time 2015-6-23 上午11:36:13
+	 * 
+	 * @param id
+	 * @return
+	 * 
+	 */
+	public boolean existProductWithSmallTypeId(int id);
+
+	/***
+	 * 
+	 * Description: 删除商品
+	 * 
+	 * @create time 2015-6-24 上午09:37:42
+	 * 
+	 * @param id
+	 * 
+	 */
+	public void delete(int id);
+
+	/***
+	 * 
+	 * Description: 保存商品
+	 * 
+	 * @create time 2015-6-24 下午01:55:52
+	 * 
+	 * @param productManager
+	 * 
+	 */
+	public void saveProduct(Product productManager);
+	
+	/***
+	 * 
+	 * Description: 更新商品
+	 *         
+	 * @create time 2015-6-24 下午02:05:10
+	 *
+	 * @param productManager       
+	 *
+	 */
+	public void updateProduct(Product productManager);
+
 }

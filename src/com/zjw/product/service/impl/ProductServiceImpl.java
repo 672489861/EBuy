@@ -96,4 +96,37 @@ public class ProductServiceImpl implements ProductService {
 		return baseDAO.get(Product.class, productId);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public boolean existProductWithSmallTypeId(int id) {
+		String hql = "select count(1) from Product where smallType.id = " + id;
+		return baseDAO.count(hql, new Object[] {}) > 0 ? true : false;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(int id) {
+		baseDAO.executeSQL("delete from t_product where id = " + id);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void saveProduct(Product productManager) {
+		baseDAO.merge(productManager);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void updateProduct(Product productManager) {
+		StringBuffer sql = new StringBuffer("update t_product set ");
+		if (productManager.getHot() == 1) {
+			sql.append("hot = 1");
+		}
+		if (productManager.getSpecialPrice() == 1) {
+			sql.append("specialPrice = 1");
+		}
+		sql.append(" where id = ").append(productManager.getId());
+		baseDAO.executeSQL(sql.toString());
+	}
+
 }

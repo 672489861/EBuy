@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 留言实体类
@@ -23,16 +25,17 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_comment")
 public class Comment {
 
+	@Expose
 	private String content; // 留言内容
-
+	@Expose
 	private Date createTime; // 创建时间
-
+	@Expose
 	private int id;
-
+	@Expose
 	private String nickName; // 留言人
-
+	@Expose
 	private String replyContent; // 回复内容
-
+	@Expose
 	private Date replyTime; // 回复时间
 
 	@Column(length = 1000)

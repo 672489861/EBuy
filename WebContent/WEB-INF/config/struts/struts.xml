@@ -13,21 +13,40 @@
 		<action name="product_*" class="com.zjw.product.action.ProductAction"
 			method="{1}">
 			<result name="success">/WEB-INF/views/product/productMain.jsp</result>
+			<result name="toManager_success">/WEB-INF/views/admin/productManage.jsp</result>
+			<result name="toProductUpdate_success">/WEB-INF/views/admin/productUpdate.jsp</result>
 		</action>
-
+		
+		<action name="bigType_*" class="com.zjw.bigtype.action.BigTypeAction"
+			method="{1}">
+			<result name="success">/WEB-INF/views/admin/bigTypeManage.jsp</result>
+			<result name="toBigTypeUpdate_success">/WEB-INF/views/admin/bigTypeUpdate.jsp</result>
+		</action>
+		
+		<action name="smallType_*" class="com.zjw.smalltype.action.SmallTypeAction"
+			method="{1}">
+			<result name="success">/WEB-INF/views/admin/smallTypeManage.jsp</result>
+			<result name="toSmallTypeUpdate_success">/WEB-INF/views/admin/smallTypeUpdate.jsp</result>
+		</action>
+		
 		<action name="news_*" class="com.zjw.news.action.NewsAction"
 			method="{1}">
 			<result name="success">/WEB-INF/views/news/newsMain.jsp</result>
+			<result name="toNewsManagerSuccess">/WEB-INF/views/admin/newsManage.jsp</result>
+			<result name="toNewsUpdate_success">/WEB-INF/views/admin/newsUpdate.jsp</result>
 		</action>
 
 		<action name="notice_*" class="com.zjw.notice.action.NoticeAction"
 			method="{1}">
 			<result name="success">/WEB-INF/views/notice/noticeMain.jsp</result>
+			<result name="toNoticeManager_success">/WEB-INF/views/admin/noticeManage.jsp</result>
+			<result name="toNoticeUpdate_success">/WEB-INF/views/admin/noticeUpdate.jsp</result>
 		</action>
 		
 		<action name="user_*" class="com.zjw.user.action.UserAction" method="{1}">
 			<result name="success">/WEB-INF/views/user/register.jsp</result>
 			<result name="toLogin_success">/WEB-INF/views/user/login.jsp</result>
+			<result name="toAdminLogin_success">/WEB-INF/views/user/login.jsp</result>
 			<result name="register_success">/WEB-INF/views/user/reg-result.jsp</result>
 			<result name="toImage_success">/WEB-INF/views/user/image.jsp</result>
 			<result name="login_success">/index.jsp</result>
@@ -35,11 +54,15 @@
 			<result name="error">/WEB-INF/views/user/login.jsp</result>  
 			<result name="adminLogin_Error">/WEB-INF/views/admin/login.jsp</result>  
 			<result name="userCenter">/WEB-INF/views/userCenter/userCenter.jsp</result>
+			<result name="toUserManager_success">/WEB-INF/views/admin/userManage.jsp</result>  
+			<result name="toUserUpdate_success">/WEB-INF/views/admin/userUpdate.jsp</result>
+			<result name="adminLogin_out">/index.jsp</result>
 		</action>
 		
 		<action name="comment_*" class="com.zjw.comment.action.CommentAction" method="{1}">
 			<result name="success">/WEB-INF/views/comment/comment.jsp</result>
 			<result name="save_success" type="redirectAction">comment.action</result>
+			<result name="toCommentManager_success">/WEB-INF/views/admin/commentManage.jsp</result>
 		</action>
 		
 		<action name="shopping_*" class="com.zjw.shopping.action.ShoppingAction" method="{1}">
@@ -49,6 +72,17 @@
 		<action name="order_*" class="com.zjw.order.action.OrderAction" method="{1}">
 			<result name="success">/WEB-INF/views/shopping/shopping-result.jsp</result> 
 			<result name="orderList">/WEB-INF/views/userCenter/userCenter.jsp</result>
+			<result name="toOrderManager_success">/WEB-INF/views/admin/orderManage.jsp</result>
+			<result name="toShowDetail_success">/WEB-INF/views/admin/orderDetails.jsp</result>
+		</action>
+		
+		<action name="sys_*" class="com.zjw.sys.action.SysAction" method="{1}">
+			
+		</action>
+		
+		<action name="tag_*" class="com.zjw.tag.action.TagAction" method="{1}">
+			<result name="success">/WEB-INF/views/admin/tagManage.jsp</result>
+			<result name="toTagUpdate_success">/WEB-INF/views/admin/tagUpdate.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -1,7 +1,9 @@
 package com.zjw.notice.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -53,6 +55,42 @@ public class NoticeServiceImpl implements NoticeService {
 	@Transactional(readOnly = true)
 	public Notice getNoticeById(int noticeId) {
 		return baseDAO.get(Notice.class, noticeId);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<String, Object> getNoticeManageList(Notice s_notice,
+			PageBean pageBean) {
+		StringBuffer hql = new StringBuffer("from Notice ");
+		StringBuffer countHql = new StringBuffer("select count(1) from Notice ");
+		List<Object> params = new ArrayList<Object>();
+		if (s_notice != null) {
+			if (StringUtils.hasText(s_notice.getTitle())) {
+				hql.append(" and title like ?");
+				countHql.append(" and title like ?");
+				params.add("%" + s_notice.getTitle() + "%");
+			}
+		}
+		List<Notice> news = baseDAO.find(
+				hql.toString().replaceFirst("and", "where"), params, pageBean);
+		long total = baseDAO.count(
+				countHql.toString().replaceFirst("and", "where"), params);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("total", total);
+		resultMap.put("rows", news);
+		return resultMap;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(Notice noticeManage) {
+		baseDAO.delete(noticeManage);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void saveNotice(Notice noticeManage) {
+		baseDAO.merge(noticeManage);
 	}
 
 }

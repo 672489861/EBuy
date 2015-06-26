@@ -1,7 +1,9 @@
 package com.zjw.order.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -69,6 +71,48 @@ public class OrderServiceImpl implements OrderService {
 		params.add(status);
 		params.add(orderNo);
 		baseDAO.executeHql(hql, params);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<String, Object> list(Order s_order, PageBean pageBean) {
+		StringBuffer hql = new StringBuffer("from Order");
+		StringBuffer countHql = new StringBuffer("select count(1) from Order");
+		List<Object> params = new ArrayList<Object>();
+		if (s_order != null) {
+			if (StringUtils.hasText(s_order.getOrderNo())) {
+				hql.append(" and orderNo like ?");
+				countHql.append(" and orderNo like ?");
+				params.add("%" + s_order.getOrderNo() + "%");
+			}
+			if (s_order.getUser() != null) {
+				hql.append(" and user.userName like ?");
+				countHql.append(" and user.userName like ?");
+				params.add("%" + s_order.getUser().getUserName() + "%");
+			}
+		}
+		List<Order> orders = baseDAO.find(
+				hql.toString().replaceFirst("and", "where"), params, pageBean);
+		long total = baseDAO.count(
+				countHql.toString().replaceFirst("and", "where"), params);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("total", total);
+		resultMap.put("rows", orders);
+		return resultMap;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Order getOrderById(int id) {
+		return baseDAO.get(Order.class, id);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void changeStatus(Order orderManage) {
+		Order order = baseDAO.get(Order.class, orderManage.getId());
+		order.setStatus(orderManage.getStatus());
+		baseDAO.merge(order);
 	}
 
 }

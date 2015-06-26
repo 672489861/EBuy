@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 /***
  * 
  * @Description: 新闻实体类
@@ -26,9 +28,13 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "t_news")
 public class News {
 
+	@Expose
 	private String content; // 新闻内容
+	@Expose
 	private Date createTime; // 新闻创建时间
+	@Expose
 	private Integer id;
+	@Expose
 	private String title; // 新闻标题
 
 	@Lob
